@@ -3,7 +3,7 @@ session_start();
 date_default_timezone_set('Asia/Taipei');
 
 class DB{
-    private $dsn="mysql:host=localhost;charset=utf8;dbname=web04";
+    private $dsn="mysql:host=localhost;charset=utf8;dbname=web01_try4";
     private $pdo;
     public $table;
     
@@ -69,6 +69,7 @@ class DB{
         }
 
         return $this->pdo->exec($sql);
+
 
     }
     function del($id){
