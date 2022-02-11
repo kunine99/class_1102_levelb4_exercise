@@ -1,6 +1,5 @@
-<!-- chk_acc複製來的 -->
 <?php include_once "../base.php";
-
+//  chk_acc複製來的 
 $db=new DB($_POST['table']);
 $chk=$db->math('count','*',['acc'=>$_POST['acc'],'pw'=>$_POST['pw']]);
 if($chk){
