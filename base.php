@@ -6,10 +6,9 @@ class DB{
     private $dsn="mysql:host=localhost;charset=utf8;dbname=web01_try4";
     private $pdo;
     public $table;
-    
+
     function __construct($table){
         $this->table=$table;
-        // $this->pdo = new PDO($this->dsn, $this->root, $this->password);
         $this->pdo=new PDO($this->dsn,'root','');
         
     }
@@ -42,15 +41,17 @@ class DB{
     }
 
     function find($id){
-        $sql = "SELECT * FROM $this->table WHERE ";
-        if (is_array($id)) {
-            foreach ($id as $key => $value) {
-                $tmp[] = "`$key`='$value'";
+        $sql="SELECT * FROM $this->table ";
+
+        if(is_array($id)){
+            foreach($arg[0] as $key => $val){
+                $tmp[]="`$key`='$val'";
             }
-            $sql .= implode(" AND ", $tmp);
-        } else {
-            $sql .= " `id`='$id'";
+            $sql .= " WHERE " . implode(" && ",$tmp);
+        }else{
+            $sql .= " WHERE `id`='$id'";
         }
+
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
     function save($array){
@@ -70,22 +71,23 @@ class DB{
 
         return $this->pdo->exec($sql);
 
-
     }
     function del($id){
-        $sql = "DELETE FROM $this->table WHERE ";
-        if (is_array($id)) {
-            foreach ($id as $key => $value) {
-                $tmp[] = "`$key`='$value'";
+        $sql="DELETE FROM $this->table ";
+
+        if(is_array($id)){
+            foreach($arg[0] as $key => $val){
+                $tmp[]="`$key`='$val'";
             }
-            $sql .= implode(" AND ", $tmp);
-        } else {
-            $sql .= "`id`='$id'";
+            $sql .= " WHERE " . implode(" && ",$tmp);
+        }else{
+            $sql .= " WHERE `id`='$id'";
         }
+
         return $this->pdo->exec($sql);
     }
     function q($sql){
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     function math($math,$col,...$arg){
         $sql="SELECT $math($col) FROM $this->table ";
@@ -130,9 +132,9 @@ $Mem=new DB("member");
 $Admin=new DB('admin');
 $Bot=new DB('bottom');
 
+
 /* $admin['acc']='admin';
 $admin['pw']='1234';
-//unserialize() 還原成陣列的意思
 $admin['pr']=serialize([1,2,3,4,5]);
 $Admin->save($admin); */
 ?>

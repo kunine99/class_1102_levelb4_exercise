@@ -38,15 +38,12 @@
 </div>
 <!-- form api -->
 <script>
-    function chkAcc(){
-        let acc=$("#acc").val()
-        $.post("api/chk_acc.php",{acc},(chk)=>{
-            // unbox解包 js在判斷數字的情況下，有時候會解包成功以時候會失敗
-            //比如說字串的0>1 有時會ture有時候faluse
-            //有時chk會被當成字串，加parselnt轉成數字(確定格式是我們要的比較保險)
-            if(parseInt(chk) || acc=='admin'){
-                alert("帳號已存在")
-            }else{
+function chkAcc(){
+    let acc=$("#acc").val()
+    $.post("api/chk_acc.php",{acc},(chk)=>{
+        if(parseInt(chk) || acc=='admin'){
+            alert("帳號已存在")
+        }else{
             alert("此帳號可使用")
         }
     })
@@ -61,6 +58,9 @@ function reg(){
         email:$("#email").val(),
     }
     $.post("api/chk_acc.php",{acc:data.acc},(chk)=>{
+        // unbox解包 js在判斷數字的情況下，有時候會解包成功以時候會失敗
+            //比如說字串的0>1 有時會ture有時候faluse
+            //有時chk會被當成字串，加parselnt轉成數字(確定格式是我們要的比較保險)
         if(parseInt(chk) || data.acc=='admin'){
             alert("帳號已存在")
         }else{

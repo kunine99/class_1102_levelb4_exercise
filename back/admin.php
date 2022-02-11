@@ -1,8 +1,7 @@
+<!-- table.all.ct>tr.tt+tr.pp -->
 <div class="ct">
     <button onclick="location.href='?do=add_admin'">新增管理員</button>
 </div>
-
-<!-- table.all.ct>tr.tt+tr.pp -->
 <table class="all ct">
     <tr class="tt">
         <td>帳號</td>

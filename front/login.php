@@ -2,6 +2,7 @@
 <h1>第一次購物</h1>
 <a href="?do=reg"><img src="icon/0413.jpg" alt=""></a>
 <h1>會員登入</h1>
+
 <table class="all">
     <tr>
         <td class="tt ct">帳號</td>
@@ -25,6 +26,7 @@
     </tr>
 </table>
 <div class="ct"><button onclick="login()">確認</button></div>
+
 <script>
 function login(){
     $.post("api/chk_ans.php",{ans:$("#ans").val()},(chk)=>{
@@ -43,4 +45,6 @@ function login(){
         }
     })
 }
+
+
 </script>
