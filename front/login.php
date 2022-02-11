@@ -1,8 +1,7 @@
+<!-- table.all>tr*3>td.tt.ct+td.pp>input:text -->
 <h1>第一次購物</h1>
 <a href="?do=reg"><img src="icon/0413.jpg" alt=""></a>
 <h1>會員登入</h1>
-
-<!-- table.all>tr*3>td.tt.ct+td.pp>input:text -->
 <table class="all">
     <tr>
         <td class="tt ct">帳號</td>
@@ -16,10 +15,10 @@
         <td class="tt ct">驗證碼</td>
         <td class="pp">
             <?php
-            $a=rand(10,99);
-            $b=rand(10,99);
-            $_SESSION['ans']=$a+$b;
-            echo $a . " + " . $b . " = ";
+                $a=rand(10,99);
+                $b=rand(10,99);
+                $_SESSION['ans']=$a+$b;
+                echo $a . " + " . $b . " = ";
             ?>
             <input type="text" name="ans" id="ans">
         </td>
@@ -28,13 +27,15 @@
 <div class="ct"><button onclick="login()">確認</button></div>
 
 <script>
-    function login(){
-        $.post("api/chk_ans.php",{ans:$("#ans").val()},(chk)=>{
-            if(parseInt(chk)){
-                console.log("答對了")
-            }else{
-                alert("對不起，您輸入的驗證碼有務請您重新輸入")
-            }
-        })
-    }
+function login(){
+    $.post("api/chk_ans.php",{ans:$("#ans").val()},(chk)=>{
+        if(parseInt(chk)){
+            console.log("答對了")
+        }else{
+            alert("對不起，您輸入的驗證碼有誤請您重新登入")
+        }
+    })
+}
+
+
 </script>

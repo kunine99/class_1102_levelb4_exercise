@@ -7,4 +7,10 @@ if($_POST['ans']==$_SESSION['ans']){
     echo 0;
 }
 
+
+
+
+
+
+
 //echo $_POST['ans']==$_SESSION['ans'];
