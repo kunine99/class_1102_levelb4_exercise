@@ -1,12 +1,15 @@
 <!-- chk_acc複製來的 -->
 <?php include_once "../base.php";
 
-$chk=$Mem->math('count','*',['acc'=>$_POST['acc']]);
+$db=new DB($_POST['table']);
+$chk=$db->math('count','*',['acc'=>$_POST['acc'],'pw'=>$_POST['pw']]);
 if($chk){
     echo 1;
 }else{
     echo 0;
 }
+
+
 
 
 //echo $Mem->math('count','*',['acc'=>$_POST['acc']]);
