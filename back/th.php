@@ -44,8 +44,9 @@ $("#parent").load("api/get_big.php")
         // 把送出來的值name換成big=name用big這個值
         // let Big=$("#big").val();
         $.post("api/new_big.php",{name:$("#big").val()},(res)=>{
-
-            location.reload();  //會造成畫面重整
+            // console.log(res);
+            //會造成畫面重整
+            location.reload();  
         })
     }
 </script>
