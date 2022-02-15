@@ -132,6 +132,8 @@ $Mem=new DB("member");
 $Admin=new DB('admin');
 $Bot=new DB('bottom');
 $Ord=new DB('ord');
+$Type=new DB('type');
+
 
 
 
