@@ -57,11 +57,15 @@ foreach($bigs as $big){
         <td>狀態</td>
         <td>操作</td>
     </tr>
+    <?php 
+    $goods=$Goods->all();
+    foreach($goods as $g){
+    ?>
     <tr class="pp ct">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><?=$g['no'];?></td>
+        <td><?=$g['name'];?></td>
+        <td><?=$g['stock'];?></td>
+        <td><?=($g['sh']==1)?"販售中":"已下架";?></td>
         <td>
             <button>修改</button>
             <button onclick="del('type')">刪除</button>
@@ -69,6 +73,9 @@ foreach($bigs as $big){
             <button>下架</button>
         </td>
     </tr>
+    <?php 
+    }
+    ?>
 </table>
 <script>
     // 請在我parent的項目 用load
@@ -77,7 +84,7 @@ foreach($bigs as $big){
     // 2.頁面回傳到client端
     //我一載入這個畫面他就會幫我執行jquery的程式
     //沒有用function包起來的程式會直接執行
-    $("#parent").load("api/get_big.php");
+    $("#parent").load("api/get_type.php");
 
     function newType(type){
         let name,parent
