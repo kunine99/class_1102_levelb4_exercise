@@ -34,6 +34,21 @@
         </td>
     </tr>
 </table>
+<script>
+// 請在我parent的項目 用load
+//我一載入這個畫面他就會幫我執行jquery的程式
+//沒有用function包起來的程式會直接執行
+$("#parent").load("api/get_big.php")
+
+    function newBig(){
+        // 把送出來的值name換成big=name用big這個值
+        // let Big=$("#big").val();
+        $.post("api/new_big.php",{name:$("#big").val()},(res)=>{
+
+            location.reload();  //會造成畫面重整
+        })
+    }
+</script>
 
 
 
