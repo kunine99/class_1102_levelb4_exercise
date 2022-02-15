@@ -36,9 +36,12 @@
 </table>
 <script>
     // 請在我parent的項目 用load
+    //當我在瀏覽器按出送出的時候，網址列打完後
+    // 1.我的網路到對方的service端
+    // 2.頁面回傳到client端
     //我一載入這個畫面他就會幫我執行jquery的程式
     //沒有用function包起來的程式會直接執行
-    $("#parent").load("api/get_big.php")
+    $("#parent").load("api/get_big.php");
 
     function newType(type) {
         let name, parent
