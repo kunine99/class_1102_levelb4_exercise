@@ -31,7 +31,7 @@ function login(){
             $.post("api/chk_pw.php",
                    {table:'admin',acc:$("#acc").val(),pw:$("#pw").val()},
                    (res)=>{
-                       console.log(res);
+                    //    console.log(res);
                         if(parseInt(res)){
 
                             location.href="back.php";

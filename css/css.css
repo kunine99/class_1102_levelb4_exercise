@@ -50,6 +50,8 @@ body
 #bottom
 {
 	height:70px;
+	/* 加背景圖片 */
+	background:url(icon/bot.png);
 	background-size:cover;
 }
 .al
