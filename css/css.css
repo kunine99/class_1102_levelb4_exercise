@@ -66,7 +66,8 @@ body
 }
 .all td
 {
-	min-width:100px;
+	/* 在order.php發現表格會超出，所以修改表格大小 */
+	min-width:50px; 
 	padding:10px;
 }
 .tt
