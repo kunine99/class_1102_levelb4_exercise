@@ -91,6 +91,7 @@ foreach($bigs as $big){
     $.post("api/save_goods.php",{id,sh},()=>{
         switch(sh){
             case 1:
+                //text是要更改的舊大分類
                 $(dom).parent().prev().text("販售中")
             break;
             case 0:
