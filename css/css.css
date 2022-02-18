@@ -26,6 +26,7 @@ body
 	vertical-align:top;
 	border:#000 1px solid;
 }
+/* A標籤被設為block,blockmargin auto,因為auto所以會置中.....? */
 #left a
 {
 	display:block;
@@ -102,10 +103,14 @@ input[type=text],input[type=password]
 {
 	width:170px;
 }
+
+/* s預設不顯示 */
 .s
 {
 	display:none;
 }
+
+/*當滑鼠移到div裡面第一層的div(id要是s)時會出現display:block效果 */
 div.ww:hover > div.s
 {
 	display:block;

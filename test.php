@@ -1,122 +1,75 @@
-<h1 class="ct">商品分類</h1>
-<div class='ct'>新增大分類
-    <input type="text" name='big' id="big">
-    <button onclick="newType('big')">新增</button>
-</div>
-<div class='ct'>新增中分類
-    <select name="parent" id="parent"></select>
-    <input type="text" name="mid" id="mid">
-    <button onclick="newType('mid')">新增</button>
-</div>
-<!--分類區-->
-<table class="all">
-    <?php
-    $bigs=$Type->all(['parent'=>0]);
-    foreach($bigs as $big){
-    ?>
-    <tr class="tt">
-        <td><?=$big['name'];?></td>
-        <td class="ct">
-            <button onclick="edit(this,<?=$big['id'];?>)">修改</button>
-            <button onclick="del('type',<?=$big['id'];?>)">刪除</button>
-        </td>
-    </tr>
-    <?php
-        $mids=$Type->all(['parent'=>$big['id']]);
-        if(count($mids)>0){
-            foreach($mids as $mid){
-    ?>
-    <tr class="pp ct">
-        <td><?=$mid['name'];?></td>
-        <td>
-            <button onclick="edit(this,<?=$mid['id'];?>)">修改</button>
-            <button onclick="del('type',<?=$mid['id'];?>)">刪除</button>
-        </td>
-    </tr>
-    <?php }  }  }  ?>
-</table>
+<?php include_once "base.php"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0039) -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>┌精品電子商務網站」</title>
+    <link href="./css/css.css" rel="stylesheet" type="text/css">
+    <script src="./js/js.js"></script>
+    <script src="./js/jquery.js"></script>
+</head>
+<body>
+    <iframe name="back" style="display:none;"></iframe>
+    <div id="main">
+        <div id="top">
+            <a href="?">
+                <img src="./icon/0416.jpg">
+            </a>
+            <div style="padding:10px;">
+                <a href="?">回首頁</a> |
+                <a href="?do=news">最新消息</a> |
+                <a href="?do=look">購物流程</a> |
+                <a href="?do=buycart">購物車</a> |
+                <a href="?do=login">會員登入</a> |
+                <a href="?do=admin">管理登入</a>
+            </div>
+            <marquee>
+            年終特賣會開跑了&nbsp;&nbsp;&nbsp;&nbsp;情人節特惠活動
+            </marquee>
+        </div>
+        <div id="left" class="ct">
+            <div style="min-height:400px;">
+                <div class="ww"><a href="#">全部商品(<?=$Goods->math('count','*',['sh'=>1]);?>)</a></div>
+                <?php
 
+                /* <div class="ww">
+                    <div class="s"></div>
+                   </div> */
 
+                $bigs=$Type->all(["parent"=>0]);
+                foreach($bigs as $big)   {
+                    echo "<div class='ww'>";
+                    echo "  <a href=''>";
+                    echo      $big['name'];
+                    echo "  </a>";
+                    echo " <div class='s'></div>";
+                    echo "</div>";
+                }
 
-<hr>
-<h1 class="ct">商品管理</h1>
-<div class="ct">
-    <button onclick="location.href='?do=add_goods'">新增商品</button>
-</div>
-<table class="all">
-    <tr class="tt ct">
-        <td>編號</td>
-        <td>商品名稱</td>
-        <td>庫存量</td>
-        <td>狀態</td>
-        <td>操作</td>
-    </tr>
-    <?php 
-    $goods=$Goods->all();
-    foreach($goods as $g){
-    ?>
-    <tr class="pp ct">
-        <td><?=$g['no'];?></td>
-        <td><?=$g['name'];?></td>
-        <td><?=$g['stock'];?></td>
-        <td><?=($g['sh']==1)?"販售中":"已下架";?></td>
-        <td>
-            <button>修改</button>
-            <button onclick="del('type')">刪除</button>
-            <button>上架</button>
-            <button>下架</button>
-
-        </td>
-    </tr>
-    <?php 
-    }
-    ?>
-</table>
-
-<script>
-$("#parent").load("api/get_type.php")
-
-function newType(type){
-    let name,parent
-    switch(type){
-        case "big":
-            name=$("#big").val();
-            parent=0;
-        break;
-        case 'mid':
-            name=$("#mid").val();
-            parent=$("#parent").val();
-        break;
-    }
-    $.post("api/save_type.php",{name,parent},(res)=>{
-        location.reload();
-    })
-}
-
-function edit(dom,id){
-    let text=$(dom).parent().prev().text();
-    let name=prompt("請輸入要修改的分類文字",text);
-    if(name!=null){
-        $.post("api/save_type.php",{id,name},(res)=>{
-            location.reload();
-            //$(dom).parent().prev().text(name)
-            //$(`#parent option[value='${id}']`).text(name)
-        })
-    }
-
-}
-
-/* function newBig(){
-   // let big=$("#big").val();
-    $.post("api/save_type.php",{name:$("#big").val(),parent:0},(res)=>{
-        location.reload();
-    })
-}
-function newMid(){
-   let parent=$("#parent").val();
-   let name=$("#mid").val();
-    $.post("api/save_type.php",{name,parent},(res)=>{
-        location.reload();
-    })
-} */
-</script>
+                ?>
+            </div>
+            <span>
+                <div>進站總人數</div>
+                <div style="color:#f00; font-size:28px;">
+                    00005 </div>
+            </span>
+        </div>
+        <div id="right">
+        <?php
+        $do=$_GET["do"]??'main';
+        $file='front/'.$do.".php";
+        if(file_exists($file)){
+            include $file;
+        }else{
+            //echo "檔案不存在";
+            include "front/main.php";
+        }
+        ?>
+        </div>
+        <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
+            <?=$Bot->find(1)['bottom'];?></div>
+    </div>
+</body>
+</html>
