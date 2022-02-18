@@ -1,6 +1,6 @@
 <h1 class="ct">新增商品</h1>
 <!-- 從add_admin複製來的 -->
-<form action="api/save_goods.php" method="post">
+<form action="api/save_goods.php" method="post" enctype="multipart/form-data">
     <table class="all">
         <tr>
             <td class="tt ct">所屬大分類</td>

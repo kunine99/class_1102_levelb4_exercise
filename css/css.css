@@ -23,6 +23,8 @@ body
 	width:20%;
 	padding:2%;
 	min-height:550px;
+	/* 新增overflow */
+	overflow: auto;
 	vertical-align:top;
 	border:#000 1px solid;
 }
@@ -48,7 +50,7 @@ body
 	/* 改成height */
 	height:550px; 
 	border:#000 1px solid;
-	overflow: auto;
+	overflow:auto;
 }
 #bottom
 {

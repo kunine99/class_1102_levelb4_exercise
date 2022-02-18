@@ -1,75 +1,117 @@
-<?php include_once "base.php"?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0039) -->
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>┌精品電子商務網站」</title>
-    <link href="./css/css.css" rel="stylesheet" type="text/css">
-    <script src="./js/js.js"></script>
-    <script src="./js/jquery.js"></script>
-</head>
-<body>
-    <iframe name="back" style="display:none;"></iframe>
-    <div id="main">
-        <div id="top">
-            <a href="?">
-                <img src="./icon/0416.jpg">
-            </a>
-            <div style="padding:10px;">
-                <a href="?">回首頁</a> |
-                <a href="?do=news">最新消息</a> |
-                <a href="?do=look">購物流程</a> |
-                <a href="?do=buycart">購物車</a> |
-                <a href="?do=login">會員登入</a> |
-                <a href="?do=admin">管理登入</a>
-            </div>
-            <marquee>
-            年終特賣會開跑了&nbsp;&nbsp;&nbsp;&nbsp;情人節特惠活動
-            </marquee>
-        </div>
-        <div id="left" class="ct">
-            <div style="min-height:400px;">
-                <div class="ww"><a href="#">全部商品(<?=$Goods->math('count','*',['sh'=>1]);?>)</a></div>
-                <?php
+@charset "utf-8";
+/* CSS Document */
+body
+{
+	font-family:"微軟正黑體";
+}
+#main
+{
+	width:1034px;
+	padding:10px;
+	margin:20px auto 20px auto;
+	border:#000 solid 1px;
+	min-height:768px;
+}
+#top a
+{
+	color:#CE631C;
+	text-decoration:none;
+}
+#left
+{
+	display:inline-block;
+	width:20%;
+	padding:2%;
+	height:550px;
+	overflow:auto;
+	vertical-align:top;
+	border:#000 1px solid;
+}
+#left a
+{
+	display:block;
+	padding:20px 5px 20px 5px;
+	text-decoration:none;
+	background:#F4C591;
+	margin:10px auto 10px auto;
+	color:#65350A;
+}
+.ct
+{
+	text-align:center;
+}
+#right
+{
+	display:inline-block;
+	width:65%;
+	padding:2%;
+	height:550px;
+	border:#000 1px solid;
+	overflow:auto;
+}
+#bottom
+{
+	height:70px;
+	background:url(icon/bot.png);
+	background-size:cover;
+}
+.al
+{
+	padding:10px;
+	text-align:center;
+}
+.all
+{
+	width:90%;
+	margin:10px auto 10px auto;
+}
+.all td
+{
+	min-width:50px;
+	padding:10px;
+}
+.tt
+{
+	background:#EF7429;
+}
+.tt td
+{
+	background:#EF7429;
+}
+.pp
+{
+	background:#EFCA85;
+}
+.pp td
+{
+	background:#EFCA85;
+}
+input[type=text],input[type=password],input[type=submit],button,.button,input[type=reset],input[type=button],select，textarea,input[type=number]
+{
+	background:#F3F3F3;
+	border:#CCC 1px solid;
+	border-radius:3px;
+	padding:5px 8px 5px 8px;
+	text-decoration:none;
+	margin:3px;
+	color:#333;
+}
+input[type=text],input[type=password]
+{
+	width:170px;
+}
+.s
+{
+	display:none;
+	
+}
 
-                /* <div class="ww">
-                    <div class="s"></div>
-                   </div> */
-
-                $bigs=$Type->all(["parent"=>0]);
-                foreach($bigs as $big)   {
-                    echo "<div class='ww'>";
-                    echo "  <a href=''>";
-                    echo      $big['name'];
-                    echo "  </a>";
-                    echo " <div class='s'></div>";
-                    echo "</div>";
-                }
-
-                ?>
-            </div>
-            <span>
-                <div>進站總人數</div>
-                <div style="color:#f00; font-size:28px;">
-                    00005 </div>
-            </span>
-        </div>
-        <div id="right">
-        <?php
-        $do=$_GET["do"]??'main';
-        $file='front/'.$do.".php";
-        if(file_exists($file)){
-            include $file;
-        }else{
-            //echo "檔案不存在";
-            include "front/main.php";
-        }
-        ?>
-        </div>
-        <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-            <?=$Bot->find(1)['bottom'];?></div>
-    </div>
-</body>
-</html>
+div.ww:hover > div.s
+{
+	display:block;
+	
+}
+.sb button
+{
+	font-size:12px;
+}

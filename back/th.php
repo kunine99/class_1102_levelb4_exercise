@@ -1,10 +1,10 @@
 <!-- div.ct*2>input:text -->
 <h1 class="ct">商品分類</h1>
-<div class="ct">新增大分類
-    <input type="text" name="big" id="big">
+<div class='ct'>新增大分類
+    <input type="text" name='big' id="big">
     <button onclick="newType('big')">新增</button>
 </div>
-<div class="ct">新增中分類
+<div class='ct'>新增中分類
     <select name="parent" id="parent"></select>
     <input type="text" name="mid" id="mid">
     <button onclick="newType('mid')">新增</button>
@@ -48,7 +48,9 @@ foreach($bigs as $big){
 
 <hr>
 <h1 class="ct">商品管理</h1>
-<div class="ct"><button onclick="location.href='?do=add_goods'">新增商品</button></div>
+<div class="ct">
+    <button onclick="location.href='?do=add_goods'">新增商品</button>
+</div>
 <table class="all">
     <tr class="tt ct">
         <td>編號</td>

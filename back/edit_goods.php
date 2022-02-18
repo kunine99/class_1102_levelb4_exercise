@@ -1,3 +1,7 @@
+<?php
+
+$g=$Goods->find($_GET['id']);
+?>
 
 <h1 class="ct">修改商品</h1>
 <form action="api/save_goods.php" method="post" enctype="multipart/form-data">
