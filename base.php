@@ -44,7 +44,7 @@ class DB{
         $sql="SELECT * FROM $this->table ";
 
         if(is_array($id)){
-            foreach($arg[0] as $key => $val){
+            foreach($id as $key => $val){
                 $tmp[]="`$key`='$val'";
             }
             $sql .= " WHERE " . implode(" && ",$tmp);
