@@ -14,6 +14,8 @@
     foreach($rows as $row){
     ?>
     <tr class="pp">
+    <!-- <td>< ?=$row['no'];?></td> -->
+    <td><a href='?do=detail&id=<?=$row['id'];?>'><?=$row['no'];?></a></td>
     <td><?=$row['name'];?></td>
 <td><?=$row['acc'];?></td>
         <!-- 資料庫用timestep,他的時間顯示是時分秒都有 -->
@@ -22,7 +24,7 @@
         <td>
                 <button onclick="location.href='?do=edit_mem&id=<?=$row['id'];?>'">修改</button>
                 <!-- admin改成member資料表 -->
-                <button onclick="del('member',<?=$row['id'];?>)">刪除</button>
+                <button onclick="del('ord',<?=$row['id'];?>)">刪除</button>
         </td>
     </tr>
     <?php
