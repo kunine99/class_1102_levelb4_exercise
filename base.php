@@ -76,7 +76,7 @@ class DB{
         $sql="DELETE FROM $this->table ";
 
         if(is_array($id)){
-            foreach($arg[0] as $key => $val){
+            foreach($id as $key => $val){
                 $tmp[]="`$key`='$val'";
             }
             $sql .= " WHERE " . implode(" && ",$tmp);
@@ -87,7 +87,7 @@ class DB{
         return $this->pdo->exec($sql);
     }
     function q($sql){
-        return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
     function math($math,$col,...$arg){
         $sql="SELECT $math($col) FROM $this->table ";
