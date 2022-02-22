@@ -24,8 +24,32 @@
                                 <a href="?do=news">最新消息</a> |
                                 <a href="?do=look">購物流程</a> |
                                 <a href="?do=buycart">購物車</a> |
-                                <a href="?do=login">會員登入</a> |
-                                <a href="?do=admin">管理登入</a>
+                                <?php
+                                if (isset($_SESSION['mem'])) {
+                                ?>
+                                        <a href="javascript:logout('mem')">登出</a> |
+
+                                <?php
+                                } else {
+                                ?>
+                                        <a href="?do=login">會員登入</a> |
+
+                                <?php
+                                }
+                                ?>
+
+                                <?php
+                                if (isset($_SESSION['admin'])) {
+                                ?>
+                                        <a href="back.php">返回管理</a>
+                                <?php
+                                } else {
+                                ?>
+                                        <a href="?do=admin">管理登入</a>
+
+                                <?php
+                                }
+                                ?>
                         </div>
                         <marquee>
                                 年終特賣會開跑了&nbsp;&nbsp;&nbsp;&nbsp;情人節特惠活動
@@ -33,38 +57,38 @@
                 </div>
                 <div id="left" class="ct">
                         <div style="min-height:400px;">
-                        <div class="ww"><a href="?type=0">全部商品(<?=$Goods->math('count','*',['sh'=>1]);?>)</a></div>
-                        <?php
+                                <div class="ww"><a href="?type=0">全部商品(<?= $Goods->math('count', '*', ['sh' => 1]); ?>)</a></div>
+                                <?php
 
-                /* <div class="ww">
+                                /* <div class="ww">
                     <div class="s"></div>
                    </div> */
 
-                $bigs=$Type->all(["parent"=>0]);
-                foreach($bigs as $big)   {
-                    echo "<div class='ww'>";
-                    echo "  <a href='?type={$big['id']}'>";
-                    echo      $big['name'];
-                    $count=$Goods->math('count','*',['big'=>$big['id'],'sh'=>1]);
-                    echo "($count)";
-                    echo "  </a>";
-                    echo "<div class='s'></div>";
-                    $mids=$Type->all(["parent"=>$big['id']]);
-                    if(!empty($mids)){
-                        foreach($mids as $mid){
-                            echo "<div class='s'>";
-                            echo "<a href='?type={$mid['id']}' style='background:lightgreen'>";
-                            echo  $mid['name'];
-                            $count=$Goods->math('count','*',['mid'=>$mid['id'],'sh'=>1]);
-                            echo "($count)";
-                            echo "</a>";
-                            echo "</div>";
-                        }
-                    }
-                    echo "</div>";
-                }
+                                $bigs = $Type->all(["parent" => 0]);
+                                foreach ($bigs as $big) {
+                                        echo "<div class='ww'>";
+                                        echo "  <a href='?type={$big['id']}'>";
+                                        echo      $big['name'];
+                                        $count = $Goods->math('count', '*', ['big' => $big['id'], 'sh' => 1]);
+                                        echo "($count)";
+                                        echo "  </a>";
+                                        echo "<div class='s'></div>";
+                                        $mids = $Type->all(["parent" => $big['id']]);
+                                        if (!empty($mids)) {
+                                                foreach ($mids as $mid) {
+                                                        echo "<div class='s'>";
+                                                        echo "<a href='?type={$mid['id']}' style='background:lightgreen'>";
+                                                        echo  $mid['name'];
+                                                        $count = $Goods->math('count', '*', ['mid' => $mid['id'], 'sh' => 1]);
+                                                        echo "($count)";
+                                                        echo "</a>";
+                                                        echo "</div>";
+                                                }
+                                        }
+                                        echo "</div>";
+                                }
 
-                ?>
+                                ?>
                         </div>
                         <span>
                                 <div>進站總人數</div>
@@ -89,7 +113,7 @@
                         ?>
                 </div>
                 <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-                        <?=$Bot->find(1)['bottom']; ?></div>
+                        <?= $Bot->find(1)['bottom']; ?></div>
         </div>
 
 </body>
